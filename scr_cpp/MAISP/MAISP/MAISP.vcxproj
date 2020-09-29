@@ -80,13 +80,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Software\opencv\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Software\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Software\opencv\sources\build\install\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Software\opencv\sources\build\install\x64\vc16\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\Software\opencv\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Software\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Software\opencv\sources\build\install\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Software\opencv\sources\build\install\x64\vc16\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -143,11 +143,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world410.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world440.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Stitcher.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mStitcher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
