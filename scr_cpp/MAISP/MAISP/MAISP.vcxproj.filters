@@ -20,6 +20,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="demo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="mStitcher.h">
       <Filter>头文件</Filter>
     </ClInclude>
