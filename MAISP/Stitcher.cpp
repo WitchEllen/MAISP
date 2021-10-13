@@ -47,17 +47,20 @@ int main() {
 
     Mat pano;
     Ptr<Stitcher> stitcher = Stitcher::create(Stitcher::PANORAMA);
-    //stitcher->stitch(imgs, pano);
-    //stitcher->estimateTransform(imgs);
-    //stitcher->composePanorama(pano); //use old images
-    //imwrite(output_path + name + "_m.png", pano);
-    //stitcher->setBlender(Blender::createDefault(Blender::FEATHER, true));
-    //stitcher->stitch(imgs, pano);
-    //imwrite(output_path + name + "_f.png", pano);
-    //stitcher->setBlender(Blender::createDefault(Blender::NO, true));
-    //stitcher->stitch(imgs, pano);
-    //imwrite(output_path + name + ".png", pano);
-    // stitcher->composePanorama(imgs, pano); //use new images with same size and count
+
+    // stitcher->stitch(imgs, pano);
+
+    // stitcher->estimateTransform(imgs);
+    // stitcher->composePanorama(pano);    //use old images
+
+    // stitcher->setBlender(Blender::createDefault(Blender::FEATHER, true));
+    // stitcher->stitch(imgs, pano);
+
+    // stitcher->setBlender(Blender::createDefault(Blender::NO, true));
+    // stitcher->stitch(imgs, pano);
+
+    // stitcher->composePanorama(imgs, pano);  //use new images with same size and count
+
     pano = stitch(imgs);
     imwrite(output_path + name + "_n_nomask.png", pano);
     return 0;

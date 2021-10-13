@@ -5,7 +5,6 @@
 #include "opencv2/features2d/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
 #include "opencv2/xfeatures2d/nonfree.hpp"
-//#include "opencv2/legacy/legacy.hpp"
 
 #include "opencv2/stitching/detail/autocalib.hpp"
 #include "opencv2/stitching/detail/blenders.hpp"
@@ -85,7 +84,7 @@ Mat stitch(vector<Mat> imgs)
     Ptr<WarperCreator> warper_creator;                  //定义图像映射变换创造器
     //warper_creator = new cv::PlaneWarper();           //平面投影
     //warper_creator = new cv::CylindricalWarper();     //柱面投影
-    warper_creator = new cv::SphericalWarper();       //球面投影
+    warper_creator = new cv::SphericalWarper();         //球面投影
     //warper_creator = new cv::FisheyeWarper();         //鱼眼投影
     //warper_creator = new cv::StereographicWarper();   //立方体投影
 
@@ -119,12 +118,12 @@ Mat stitch(vector<Mat> imgs)
         masks_warped[i].copyTo(masks_seam[i]);
 
     Ptr<SeamFinder> seam_finder;                                //定义接缝线寻找器
-   //seam_finder = new NoSeamFinder();                          //无需寻找接缝线
-   //seam_finder = new VoronoiSeamFinder();                     //逐点法
-   //seam_finder = new DpSeamFinder(DpSeamFinder::COLOR);       //动态规范法
-   //seam_finder = new DpSeamFinder(DpSeamFinder::COLOR_GRAD);
-   //图割法
-   //seam_finder = new GraphCutSeamFinder(GraphCutSeamFinder::COST_COLOR);
+    //seam_finder = new NoSeamFinder();                         //无需寻找接缝线
+    //seam_finder = new VoronoiSeamFinder();                    //逐点法
+    //seam_finder = new DpSeamFinder(DpSeamFinder::COLOR);      //动态规范法
+    //seam_finder = new DpSeamFinder(DpSeamFinder::COLOR_GRAD);
+    //图割法
+    //seam_finder = new GraphCutSeamFinder(GraphCutSeamFinder::COST_COLOR);
     seam_finder = new GraphCutSeamFinder(GraphCutSeamFinder::COST_COLOR_GRAD);
 
     vector<UMat> images_warped_f(num_images);
@@ -154,10 +153,10 @@ Mat stitch(vector<Mat> imgs)
     //在融合的时候，最重要的是在接缝线两侧进行处理，而上一步在寻找接缝线后得到的掩码的边界就是接缝线处，因此我们还需要在接缝线两侧开辟一块区域用于融合处理，这一处理过程对羽化方法尤为关键
     //应用膨胀算法缩小掩码面积
     vector<Mat> dilate_img(num_images);
-    Mat element = getStructuringElement(MORPH_RECT, Size(20, 20));    //定义结构元素
+    Mat element = getStructuringElement(MORPH_RECT, Size(20, 20));  //定义结构元素
     for (int k = 0; k < num_images; k++)
     {
-        images_warped_f[k].convertTo(images_warped_s[k], CV_16S);    //改变数据类型
+        images_warped_f[k].convertTo(images_warped_s[k], CV_16S);   //改变数据类型
         dilate(masks_seam[k], masks_seam[k], element);    //膨胀运算
         //映射变换图的掩码和膨胀后的掩码相“与”，从而使扩展的区域仅仅限于接缝线两侧，其他边界处不受影响
         // masks_seam[k] = masks_seam[k] & masks_warped[k];
